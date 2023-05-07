@@ -1,0 +1,275 @@
+main.main--page section.split {
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+}
+
+main.main--page section {
+    margin-block-end: 200px;
+}
+
+main.main--page .section--title {
+    font-weight: 700;
+    font-size: 64px;
+}
+
+main.main--page .section--right {
+    position: relative;
+}
+
+main.main--page .section--text {
+    font-weight: 600;
+    font-size: 25px;
+}
+
+main.main--page .doctors--badge {
+    width: 255px;
+    height: 82px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 12px 15px;
+    position: absolute;
+    bottom: 230px;
+}
+
+
+main.main--page .doctors--badge .doctor-images {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+
+main.main--page .doctors--badge .doctor-images img {
+    width: 57px;
+}
+
+main.main--page .doctors--badge .doctor-images img:nth-of-type(2) {
+    margin-inline-start: -20px;
+}
+
+main.main--page .doctors--badge .doctor-images img:nth-of-type(3) {
+    margin-inline-start: -20px;
+}
+
+main.main--page .doctors--badge .doctor-images p {
+    text-align: center;
+    color: #8F8F8F;
+    margin-inline-start: 10px;
+}
+
+main.main--page .partners--badge .partners--badge-color {
+    position: absolute;
+    width: 460px;
+    height: 122.67px;
+    background: #7B86E6;
+    border-radius: 30px;
+    z-index: 1;
+    mix-blend-mode: color;
+}
+
+main.main--page .partners--badge {
+    position: relative;
+    width: 460px;
+    height: 122.67px;
+    background: #DEE1F9;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-block-start: 250px;
+}
+
+
+main.main--page .partners--badge>img {
+    mix-blend-mode: darken;
+}
+
+main.main--page .benefits--badge {
+    width: 416px;
+    height: 292px;
+
+    padding: 15px 20px;
+    background: #FFFFFF;
+    border-left: 4px solid #7B86E6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    position: relative;
+    margin-left: 70px;
+    margin-top: -90px;
+}
+
+main.main--page .benefits--badge>h3 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 38px;
+
+    color: #5A67E0;
+}
+
+
+main.main--page .benefits--badge-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-block-end: 1rem;
+}
+
+
+main.main--page .benefits--badge .benefit--number {
+    font-weight: 400;
+    min-width: 75px;
+    font-size: 60px;
+    line-height: 90px;
+
+    color: #F1F1F1;
+}
+
+main.main--page .benefits--badge .benefit--item-title {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+main.main--page .benefits--badge .benefit--item-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: #BEBEBE;
+}
+
+main.main--page #benefits--section {
+    justify-content: space-between;
+    gap: 100px
+}
+
+main.main--page #benefits--section .section--right {
+    margin-inline-end: 100px;
+}
+
+
+main.main--page #benefits--section .benefits--green-badge {
+    background-color: #BDF3D2;
+    color: #48B373;
+    border-radius: 33px;
+    font-weight: 600;
+    width: 133px;
+    height: 27px;
+    text-align: center;
+    margin-block-start: -50px;
+}
+
+main.main--page #benefits--section ul {
+    list-style: none;
+    font-weight: 500;
+    line-height: 70px;
+}
+
+
+main.main--page #benefits--section li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+main.main--page #benefits--section li svg {
+    border: #DEE1F9 solid 4px;
+    border-radius: 50%;
+    background-color: #DEE1F9;
+    scale: 2.0;
+    fill: #5A67E0;
+}
+
+main.main--page #specialists--section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.main--page #specialists--section .section--title,
+main.main--page #specialists--section .section--text {
+    text-align: center;
+}
+
+main.main--page #specialists--section .section--title {
+    font-weight: 700;
+    font-size: 50px;
+}
+
+main.main--page #specialists--section .section--text {
+    font-weight: 400;
+    font-size: 18px;
+    margin-block-start: 40px;
+}
+
+main.main--page #specialists--section .specialist--badge {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #B9B9B9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+main.main--page #specialists--section img {
+    max-width: 100%;
+}
+
+main.main--page #specialists--section .specialist--grid {
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    gap: 45px;
+    margin-block-start: 70px;
+}
+
+main.main--page #reviews--section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 130px;
+}
+
+main.main--page #reviews--section .reviews--badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px 65px;
+    background-color: #DEE1F9BF;
+    color: #606060;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 500px;
+    scale: 0.8;
+}
+
+main.main--page #reviews--section .reviews--badge.primary {
+    color: initial;
+    background-color: white;
+    scale: 1.0;
+}
+
+main.main--page #reviews--section .reviews--grid {
+    display: flex;
+    gap: 10px;
+}
+
+@media screen and (max-width: 1150px) {
+    main.main--page .section--title {
+        font-weight: 700;
+        font-size: 50px;
+    }
+
+    main.main--page #doctor--image {
+        width: 75%;
+        height: auto;
+    }
+
+    main.main--page .section--text {
+        font-weight: 600;
+        font-size: 20px;
+    }
+}

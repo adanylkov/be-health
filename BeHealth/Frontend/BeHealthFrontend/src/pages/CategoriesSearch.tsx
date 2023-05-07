@@ -189,7 +189,7 @@ const CategoriesSearch = () => {
 	  ));
 	
 	  return (
-		<main>
+		<main className="categories--search">
 		  <div className="p" style={{ marginLeft: 20 }}>
 			<Searcher />
 			<p className="text-specjalizacja">SPECJALIZACJA</p>
