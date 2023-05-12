@@ -54,7 +54,6 @@ export const Navbar = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { user } = useContext(BeHealthContext)
 	const profilePicture = user === undefined ? "" : user.profilePicture;
-	console.log(user?.profilePicture);
 
 	return (
 		<nav>

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { UploadImageButton } from "../../../components/ui/UploadImageButton"
 import { BeHealthContext } from "../../../Context";
 import { useAddCertificate, useFetchCertificates } from "./ProfileHooks";
-import { useNavigate } from 'react-router-dom';
+import { UseLoggedInUser } from "../../auth/LoginRedirect";
 
 export interface Certificate {
     url: string
@@ -21,14 +21,7 @@ export const CertificatesSection = () => {
 
     const { user, setUrlRedirect } = useContext(BeHealthContext)
     const id = user?.id;
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (user === undefined) {
-            setUrlRedirect("/profile")
-            navigate("/login")
-        }
-    }, [])
+    UseLoggedInUser("/profile")
 
     if (id === undefined) {
         return (
