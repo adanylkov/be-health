@@ -11,6 +11,7 @@ using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BeHealthBackend.Services.DoctorServices;
@@ -117,7 +118,7 @@ public class DoctorService : IDoctorService
 
     public string GenerateJwt(LoginDto dto)
     {
-        var user = _context.Doctors.FirstOrDefault(d => d.Email == dto.Email);
+        var user = _context.Doctors.Include(d => d.Address).FirstOrDefault(d => d.Email == dto.Email);
 
         if (user is null)
             throw new BadRequestException("Invalid username or password");
@@ -132,7 +133,13 @@ public class DoctorService : IDoctorService
             new (ClaimTypes.NameIdentifier, user.Id.ToString()),
             new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
             new (ClaimTypes.Role, $"{user.Role}"),
-            new Claim("ProfileImage", user.AvatarUri ?? string.Empty)
+            new (ClaimTypes.Email, user.Email),
+            new (ClaimTypes.MobilePhone, user.PhoneNumber),
+            new (ClaimTypes.StateOrProvince, user.Address.City),
+            new (ClaimTypes.Country, "Polska"),
+            new (ClaimTypes.PostalCode, user.Address.PostalCode),
+            new ("Specialization", user.Specialist),
+            new ("ProfileImage", user.AvatarUri ?? string.Empty)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

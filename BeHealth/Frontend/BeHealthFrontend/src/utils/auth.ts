@@ -23,6 +23,12 @@ export interface Token {
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': "Doctor" | "Patient",
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': string,
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string,
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': string,
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone': string,
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/stateorprovince': string,
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country': string,
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/postalcode': string,
+  'Specialization': string,
   'ProfileImage': string,
   iss: string,
 }
@@ -30,6 +36,12 @@ export interface Token {
 export interface User {
   id: string,
   name: string,
-  role: 'Doctor' | 'Patient'
+  role: 'Doctor' | 'Patient',
+  email: string,
+  phone: string,
+  city: string,
+  country: string,
+  postalCode: string,
+  specialization: string,
   profilePicture: string,
 }

@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BeHealthBackend.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeHealthBackend.Services.PatientServices;
 public class PatientService : IPatientService
@@ -107,7 +108,9 @@ public class PatientService : IPatientService
 
     public string GenerateJwt(LoginDto dto)
     {
-        var user = _context.Patients.FirstOrDefault(d => d.Email == dto.Email);
+        var user = _context.Patients
+            .Include(d => d.Address)
+            .FirstOrDefault(d => d.Email == dto.Email);
 
         if (user is null)
             throw new BadRequestException("Invalid username or password!");
@@ -122,7 +125,13 @@ public class PatientService : IPatientService
             new (ClaimTypes.NameIdentifier, user.Id.ToString()),
             new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
             new (ClaimTypes.Role, $"{user.Role}"),
-            new Claim("ProfileImage", user.AvatarUri ?? string.Empty)
+            new (ClaimTypes.Email, user.Email),
+            new (ClaimTypes.MobilePhone, user.PhoneNumber),
+            new (ClaimTypes.StateOrProvince, user.Address.City),
+            new (ClaimTypes.Country, "Polska"),
+            new (ClaimTypes.PostalCode, user.Address.PostalCode),
+            new ("Specialization", "Patient"),
+            new ("ProfileImage", user.AvatarUri ?? string.Empty)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

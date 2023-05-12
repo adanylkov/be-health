@@ -48,6 +48,12 @@ export const useLogin = (): useLogin => {
                 name: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
                 role: parsedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
                 profilePicture: parsedToken['ProfileImage'],
+                city: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/stateorprovince'],
+                country: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country'],
+                email: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
+                phone: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'],
+                postalCode: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/postalcode'],
+                specialization: parsedToken['Specialization'],
             })
 
             setError('')
