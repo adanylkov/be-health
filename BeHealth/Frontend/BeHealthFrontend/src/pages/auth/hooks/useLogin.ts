@@ -46,7 +46,8 @@ export const useLogin = (): useLogin => {
             setUser({
                 id: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
                 name: parsedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
-                role: parsedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+                role: parsedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+                profilePicture: parsedToken['ProfileImage'],
             })
 
             setError('')

@@ -28,25 +28,42 @@ const Menu = () => {
 	);
 };
 
+const LoginLinks = () => {
+	return (
+		<div className="login-links">
+			<Link to={"/login"}>Login</Link>
+			<PrimaryButton>
+				<Link to={"/register"}>Rejestracja</Link>
+			</PrimaryButton>
+		</div>
+	)
+}
+
+const Profile = (props: { imageUrl: string, name: string }) => {
+	return (
+		<Link to={"/profile"}>
+			<div className="profile">
+				<img className="profile--image" src={props.imageUrl} />
+				<p>{props.name}</p>
+			</div>
+		</Link>
+	)
+}
+
 export const Navbar = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { user } = useContext(BeHealthContext)
+	const profilePicture = user === undefined ? "" : user.profilePicture;
+	console.log(user?.profilePicture);
 
 	return (
 		<nav>
-			<a href="">
+			 <Link to={"/"}>
 				<Logo fontSize={20} />
-			</a>
+			</Link>
 			<div className="nav_container">
 				<Menu />
-				{user === undefined && (
-					<div className="login-links">
-						<Link to={"/login"}>Login</Link>
-						<PrimaryButton>
-							<Link to={"/register"}>Rejestracja</Link>
-						</PrimaryButton>
-					</div>
-				)}
+				{user === undefined ? <LoginLinks /> : <Profile imageUrl={profilePicture} name={user.name} />}
 			</div>
 			<div className="navbar-menu ">
 				{toggleMenu ? (
@@ -57,14 +74,7 @@ export const Navbar = () => {
 				{toggleMenu && (
 					<div className="navbar-menu_container drop-down">
 						<Menu />
-						{user === undefined && (
-							<div className="login-links">
-								<Link to={"/login"}>Login</Link>
-								<PrimaryButton>
-									<Link to={"/register"}>Rejestracja</Link>
-								</PrimaryButton>
-							</div>
-						)}
+						{user === undefined && <LoginLinks />}
 					</div>
 				)}
 			</div>

@@ -121,7 +121,8 @@ public class PatientService : IPatientService
         {
             new (ClaimTypes.NameIdentifier, user.Id.ToString()),
             new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-            new (ClaimTypes.Role, $"{user.Role}")
+            new (ClaimTypes.Role, $"{user.Role}"),
+            new Claim("ProfileImage", user.AvatarUri ?? string.Empty)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

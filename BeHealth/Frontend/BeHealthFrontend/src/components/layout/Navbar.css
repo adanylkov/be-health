@@ -87,6 +87,17 @@ nav a {
     display: none;
 }
 
+nav .profile {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+nav .profile .profile--image {
+    border-radius: 50%;
+    width: 50px;
+}
+
 @media screen and (max-width: 550px) {
    .nav_container {
     display: none;
