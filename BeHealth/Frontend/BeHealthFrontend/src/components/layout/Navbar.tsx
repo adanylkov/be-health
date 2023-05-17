@@ -5,6 +5,7 @@ import "./Navbar.css";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BeHealthContext } from "../../Context";
+import { api_path } from "../../utils/api";
 
 const Menu = () => {
 	return (
@@ -40,10 +41,11 @@ const LoginLinks = () => {
 }
 
 const Profile = (props: { imageUrl: string, name: string }) => {
+	const {profileImageUrl} = useContext(BeHealthContext)
 	return (
 		<Link to={"/profile"}>
 			<div className="profile">
-				<img className="profile--image" src={props.imageUrl} />
+				<img className="profile--image" src={profileImageUrl} />
 				<p>{props.name}</p>
 			</div>
 		</Link>
@@ -53,7 +55,7 @@ const Profile = (props: { imageUrl: string, name: string }) => {
 export const Navbar = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { user } = useContext(BeHealthContext)
-	const profilePicture = user === undefined ? "" : user.profilePicture;
+	const profilePicture = user === undefined ? "" : `${api_path}/Images/${user.profilePicture}`;
 
 	return (
 		<nav>

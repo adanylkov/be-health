@@ -3,6 +3,8 @@ import { BsFillTelephoneFill } from "react-icons/bs"
 import { FaUserNurse } from "react-icons/fa"
 import { HiOutlineMail } from "react-icons/hi"
 import { BeHealthContext } from "../../../Context"
+import { UploadProfileImage } from "../../../components/ui/UploadProfileImage"
+import { useChangeProfileImage } from "./ProfileHooks"
 
 interface Badge {
     text: string,
@@ -21,10 +23,14 @@ const Badge = ({ text, icon }: Badge) => {
 export const DoctorSection = () => {
     const { user } = useContext(BeHealthContext)
     if (!user) return null
+
+    const { profileImageUrl, setProfileImageUrl } = useContext(BeHealthContext)
+
     return (
         <section className="user">
             <div className="row">
-                <img src={user.profilePicture} className="profile--img" />
+                <UploadProfileImage src={profileImageUrl} handleUpload={(file) => useChangeProfileImage(file, user.id)} onUpload={setProfileImageUrl}
+                className="profile--img" />
                 <div className="user">
                     <p className="username">{user.name}</p>
                     <p className="information">{user.city}, {user.country}</p>

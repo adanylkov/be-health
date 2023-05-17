@@ -29,10 +29,11 @@ function App() {
 	const [currentUser, setCurrentUser] = useState<User>()
 	const [token, setToken] = useState("")
 	const [urlRedirect, setUrlRedirect] = useState("")
+	const [profileImageUrl, setProfileImageUrl] = useState("")
 
 	return (
 		<>
-		<BeHealthContext.Provider value={{ user: currentUser, setUser: setCurrentUser, token: token, setToken: setToken, urlRedirect: urlRedirect, setUrlRedirect: setUrlRedirect }}>
+		<BeHealthContext.Provider value={{ user: currentUser, setUser: setCurrentUser, token: token, setToken: setToken, urlRedirect: urlRedirect, setUrlRedirect: setUrlRedirect, profileImageUrl: profileImageUrl, setProfileImageUrl: setProfileImageUrl}}>
 			<Navbar />
 			<div className="container">
 				<Sidebar isOpen={openSidebar} toggle={toggleSidebar} />

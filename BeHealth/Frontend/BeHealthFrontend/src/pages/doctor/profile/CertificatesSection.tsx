@@ -19,7 +19,7 @@ export const CertificatesSection = () => {
     const addCertificate = (url: string) => setCertificates(prev => [...prev, { url: url }])
     const certificateElements = certificates?.map(certificate => <Certificate key={certificate.url} url={certificate.url} />)
 
-    const { user, setUrlRedirect } = useContext(BeHealthContext)
+    const { user } = useContext(BeHealthContext)
     const id = user?.id;
     UseLoggedInUser("/profile")
 
@@ -28,7 +28,6 @@ export const CertificatesSection = () => {
             <section className="certificates"></section>
         )
     }
-
 
     useEffect(() => {
         (async () => {

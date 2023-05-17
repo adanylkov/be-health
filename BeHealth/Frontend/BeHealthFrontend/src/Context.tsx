@@ -8,6 +8,8 @@ interface Context {
     setUser: (user: User) => void,
     urlRedirect: string,
     setUrlRedirect: (url: string) => void,
+    profileImageUrl: string,
+    setProfileImageUrl: (url: string) => void
 }
 
 export const BeHealthContext = createContext<Context>({
@@ -17,4 +19,6 @@ export const BeHealthContext = createContext<Context>({
     setUser: () => {},
     urlRedirect: "",
     setUrlRedirect: () => {},
+    profileImageUrl: "",
+    setProfileImageUrl: () => {},
 })
