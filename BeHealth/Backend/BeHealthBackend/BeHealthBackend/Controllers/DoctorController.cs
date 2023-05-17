@@ -46,6 +46,13 @@ public class DoctorController : ControllerBase
         var result = await _doctorService.AddCertificate(filename, id);
         return result ? Ok(filename) : BadRequest();
     }
+    [HttpPost("{id}/profileImage")]
+    public async Task<ActionResult> UploadProfileImage([FromRoute] int id, [FromForm] CreateImageDto file)
+    {
+        var filename = await _fileService.SaveFile(file);
+        var result = await _doctorService.ChangeProfileImage(filename, id);
+        return result ? Ok(filename) : BadRequest();
+    }
     [HttpGet("{id}/certificates/")]
     public async Task<ActionResult> GetCertificates([FromRoute] int id)
     {

@@ -14,4 +14,5 @@ public interface IDoctorService
     string GenerateJwt(LoginDto dto);
     Task<IEnumerable<string>?> GetCertificates(int id);
     Task<bool> AddCertificate(string filename, int id);
+    Task<bool> ChangeProfileImage(string filename, int id);
 }

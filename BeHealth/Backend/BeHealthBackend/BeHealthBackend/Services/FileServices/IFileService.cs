@@ -4,4 +4,5 @@ namespace BeHealthBackend.Services.FileServices;
 public interface IFileService
 {
     Task<string> SaveFile(CreateImageDto file);
+    Task<bool> DeleteFile(string filename);
 }

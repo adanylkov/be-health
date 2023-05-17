@@ -15,6 +15,17 @@ public class FileService : IFileService
         _webHostEnvironment = webHostEnvironment;
     }
 
+    public Task<bool> DeleteFile(string filename)
+    {
+        var path = Path.Combine(_webHostEnvironment.WebRootPath, "Images", filename);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            return Task.FromResult(true);
+        }
+        return Task.FromResult(false);
+    }
+
     public async Task<string> SaveFile(CreateImageDto file)
     {
         var wwwRootPath = _webHostEnvironment.WebRootPath;

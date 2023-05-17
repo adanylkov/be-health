@@ -9,6 +9,7 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
+using BeHealthBackend.Services.FileServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,10 @@ public class DoctorService : IDoctorService
     private readonly BeHealthContext _context;
     private readonly AuthenticationSettings _authenticationSettings;
     private readonly IAuthorizationService _authorizationService;
+    private readonly IFileService _fileService;
 
     public DoctorService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Doctor> passwordHasher,
-        BeHealthContext context, AuthenticationSettings authenticationSettings, IAuthorizationService authorizationService)
+        BeHealthContext context, AuthenticationSettings authenticationSettings, IAuthorizationService authorizationService, IFileService fileService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -33,6 +35,7 @@ public class DoctorService : IDoctorService
         _context = context;
         _authenticationSettings = authenticationSettings;
         _authorizationService = authorizationService;
+        _fileService = fileService;
     }
 
     public async Task<IEnumerable<DoctorDto>> GetDoctorsAsync()
@@ -177,6 +180,21 @@ public class DoctorService : IDoctorService
         };
 
         doctor.Certificates.Add(certificate);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
+
+    public async Task<bool> ChangeProfileImage(string filename, int id)
+    {
+        var doctor = await _unitOfWork.DoctorRepository.GetAsync(id);
+
+        if (doctor is null)
+            return false;
+
+        await _fileService.DeleteFile(doctor.AvatarUri);
+
+        doctor.AvatarUri = filename;
         await _unitOfWork.SaveAsync();
 
         return true;
